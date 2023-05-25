@@ -1,23 +1,18 @@
 <template>
   <div>
-    <div class="flex flex-col">
-      <div class="" id="app">
-        <img
-          class="Rectangle"
-          height="500"
-          src="../static/images/Rectangle 6.png"
-        />
-        <div class="black">
+    <div>
+      <div class="relative">
+        <img width="100%" height="500" src="../static/images/Rectangle.png" />
+        <div class="absolute inset-y-2/4 black">
           Welcome To <br />
           SHU
         </div>
       </div>
 
-      <div
-        class="container flex flex-row flex-wrap items-center justify-center"
-      >
+      <div class="flex flex-row flex-wrap items-center justify-center">
         <nuxt-link
           v-for="(btn, index) in dashboardButtons"
+          :to="btn.to"
           :key="`btn-${index + 1}`"
         >
           <div
@@ -100,10 +95,6 @@
         > -->
       </div>
     </div>
-
-    <div>
-      <link rel="stylesheet" href="" />
-    </div>
   </div>
 
   <!-- <h1 class="text-3xl font-bold underline">Hello world!</h1>
@@ -117,23 +108,23 @@ import { ref } from "vue";
 const dashboardButtons = [
   {
     name: "Student portal",
-    to: "/student-portal",
+    to: "/student",
     icon: "images/Vector.png",
   },
   {
     name: "Faculty portal",
-    to: "/faculty-portal",
+    to: "/faculty",
     icon: "images/faculty.png",
   },
   {
     name: "Parents portal",
-    to: "/parents-portal",
+    to: "/parent",
     icon: "images/parents.png",
   },
 
   {
     name: "Finance portal",
-    to: "/finance-portal",
+    to: "/finance",
     icon: "images/finance.png",
   },
 ];
@@ -157,16 +148,14 @@ const dashboardButtons = [
   font-weight: bold;
   border-radius: 25px;
 }
-.Rectangle {
-  width: 100%;
-}
+
 .black {
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
   height: 270px;
-  bottom: 47%;
+
   background: rgba(0, 0, 0, 0.24);
-  height: 212px;
+  height: 210px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
