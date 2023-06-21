@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app style="background-color: #f5f5f5" dark>
     <!-- <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -42,7 +42,8 @@
       </v-btn>
     </v-app-bar> -->
     <v-main>
-      <v-container fluid class="pa-0">
+      <LayoutHeader />
+      <v-container fluid class="pa-0 h-full">
         <Nuxt />
       </v-container>
     </v-main>
