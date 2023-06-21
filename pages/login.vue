@@ -12,18 +12,62 @@
       <v-col align-self="center" align="center">
         <v-card flat max-width="500">
           <!-- logo -->
-          <!-- <v-img
-          height="100vh"
-          src="/images/uni_front.png"
-          alt="uni_login_banner"
-        /> -->
+          <v-img
+            height="200px"
+            width="169px"
+            src="/images/Ellipse 1.png"
+            alt="uni_login_banner"
+          />
 
           <v-form>
-            <v-text-field outlined label="Username"></v-text-field>
+            <v-text-field
+              v-model="name"
+              class="Field_Deco"
+              color="rgba(0, 0, 0, 0.48);"
+              label="Registration No"
+              required
+            ></v-text-field>
 
-            <v-text-field outlined label="Password"></v-text-field>
+            <v-text-field
+              v-model="password"
+              class="Field_Deco"
+              color="rgba(0, 0, 0, 0.48);"
+              label="Password"
+              required
+            ></v-text-field>
 
-            <v-btn @click="login" depressed color="primary"> Sign In </v-btn>
+            <!-- <v-text-field outlined label="Username"></v-text-field>
+
+            <v-text-field outlined label="Password"></v-text-field> -->
+
+            <v-row align="center">
+              <v-col>
+
+               
+           
+              <div class="d-flex align-center justify-space-between ">
+
+                <v-checkbox
+                v-model="checkbox"
+                color="black"
+                label="Remember me"
+                required
+              ></v-checkbox>
+
+
+                 <span> Forgot password?</span>
+
+
+              </div>
+
+              <div class="d-flex align-center justify-end ">
+                 <v-btn @click="login" depressed color="primary">
+                    Sign In
+                  </v-btn>
+              </div>
+
+              </v-col>
+            </v-row>
           </v-form>
         </v-card>
       </v-col>
@@ -77,6 +121,22 @@ export default {
   },
 }
 </script>
+
+<style>
+.Field_Deco{
+  height: 50px;
+  color: brown;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  align-items: center;
+  text-align: center;
+  text-transform: capitalize;
+  color: rgba(47, 47, 47, 0.48);
+}
+</style>
 
 <!-- <style lang="scss">
 .bannerLogin {

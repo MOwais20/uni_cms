@@ -1,9 +1,6 @@
 <template>
   <h1>Student</h1>
-</template>
+  </template>
 
-<script>
-export default {}
-</script>
 
 <style></style>
