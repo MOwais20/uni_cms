@@ -37,6 +37,7 @@
               v-model="loginData.password"
               counter
               @click:append="showPass = !showPass"
+              @keyup.enter="login"
               outlined
               label="Password"
             ></v-text-field>
@@ -71,20 +72,28 @@ export default {
     showPass: false,
     rules: {
       required: (value) => !!value || 'Required.',
-      min: (v) => v?.length >= 8 || 'Min 8 characters',
+      min: (v) => v?.length >= 5 || 'Min 5 characters',
       emailMatch: () => `The email and password you entered don't match`,
     },
   }),
   methods: {
-    login() {
+    async login() {
       if (this.$refs.loginForm?.validate()) {
         this.loader = true
 
-        setTimeout(() => {
-          this.loader = false
-        }, 2000)
-
-        this.$router.push('/')
+        await this.$auth
+          .loginWith('local', {
+            data: {
+              username: this.loginData.username,
+              password: this.loginData.password,
+            },
+          })
+          .then(() => {
+            this.$router.push('/')
+          })
+          .finally(() => {
+            this.loader = false
+          })
       }
     },
   },

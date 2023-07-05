@@ -10,7 +10,8 @@
 <script>
 export default {
   methods: {
-    logout() {
+    async logout() {
+      await this.$auth.logout()
       this.$router.push('/login')
     },
   },

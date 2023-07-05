@@ -4,6 +4,9 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
   target: 'static',
+  server: {
+    port: 3004,
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - uni_shu_cms',
@@ -39,12 +42,13 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/auth-next',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: process.env.baseURL || 'http://localhost:8080/api',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -77,6 +81,36 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
+        },
+      },
+    },
+  },
+
+  auth: {
+    watchLoggedIn: false,
+    rewriteRedirects: false,
+    localStorage: {
+      prefix: `${process.env.PREFIX}_`,
+    },
+    token: {
+      prefix: `${process.env.PREFIX}`,
+    },
+    strategies: {
+      local: {
+        token: {
+          property: 'data.accessToken',
+          name: 'x-access-token',
+          // maxAge: 0,
+          type: false,
+        },
+        user: {
+          property: 'data',
+          autoFetch: true,
+        },
+        endpoints: {
+          login: { url: '/api/auth/signin', method: 'post' },
+          user: { url: '/api/user', method: 'get' },
+          logout: false,
         },
       },
     },
